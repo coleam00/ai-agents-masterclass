@@ -66,8 +66,11 @@ After setting up the .env file, run the below commands to create a Python virtua
 ```bash
 python -m venv ai-agents-masterclass
 
-On Windows: .\ai-agents-masterclass\Scripts\activate
-On MacOS/Linux: source ai-agents-masterclass/bin/activate
+# On Windows:
+.\ai-agents-masterclass\Scripts\activate
+
+# On MacOS/Linux: 
+source ai-agents-masterclass/bin/activate
 
 cd 1-first-agent (or whichever folder)
 pip install -r requirements.txt
