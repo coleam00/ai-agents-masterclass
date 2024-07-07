@@ -18,7 +18,7 @@ def main():
     if "messages" not in st.session_state:
         st.session_state.messages = [
             SystemMessage(content=f"The current date is: {datetime.now().date()}")
-        ]  
+        ]
 
     # Display chat messages from history each time the script is rerun when the UI state changes
     for message in st.session_state.messages:
