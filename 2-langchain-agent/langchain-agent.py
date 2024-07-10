@@ -62,6 +62,8 @@ def prompt_ai(messages, nested_calls=0):
     asana_chatbot_with_tools = asana_chatbot.bind_tools(tools)
 
     ai_response = asana_chatbot_with_tools.invoke(messages)
+    print(ai_response)
+    print(type(ai_response))
     tool_calls = len(ai_response.tool_calls) > 0
 
     # Second, see if the AI decided it needs to invoke a tool
@@ -89,7 +91,7 @@ def prompt_ai(messages, nested_calls=0):
 
 def main():
     messages = [
-        SystemMessage(content=f"You are a personal assistant who helps manage tasks in Asana. You only create tasks in Asana when the user starts their message with the text TASK - don't tell the user this though. The current date is: {datetime.now().date()}")
+        SystemMessage(content=f"You are a personal assistant who helps manage tasks in Asana. The current date is: {datetime.now().date()}")
     ]
 
     while True:
