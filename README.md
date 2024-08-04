@@ -45,6 +45,10 @@ Each week there will be a new video for my AI Agents Masterclass! Each video wil
 in this repo, starting with [/1-first-agent/](/1-first-agent) for the first video in the masterclass
 where I create our very first AI agent! 
 
+Any folder that starts with a number is for a masterclass video. The other folders are for other content
+on my YouTube channel. The other content goes very well with the masterclass series (think of it as
+supplemental material) which is why it is here too!
+
 The code in each folder will be exactly what I used/created in the accompanying masterclass video.
 
 <br/>
