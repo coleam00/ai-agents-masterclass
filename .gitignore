@@ -2,3 +2,9 @@ __pycache__
 prep
 .env
 chroma_db
+test.py
+data
+creds
+credentials
+credentials.json
+token.json
