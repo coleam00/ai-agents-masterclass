@@ -14,8 +14,8 @@ from langchain_anthropic import ChatAnthropic
 from langchain_core.messages import ToolMessage, AIMessage
 
 from tools.asana_tools import available_asana_functions
-from tools.google_drive_tools import available_drive_functions
-from tools.vector_db_tools import available_vector_db_functions
+# from tools.google_drive_tools import available_drive_functions
+# from tools.vector_db_tools import available_vector_db_functions
 
 load_dotenv()
 model = os.getenv('LLM_MODEL', 'gpt-4o')
@@ -26,7 +26,11 @@ model_mapping = {
     "groq": ChatGroq
 }
 
-available_functions = available_asana_functions | available_drive_functions | available_vector_db_functions
+# Google Drive and Vector DB tools are not included by default because you'll need a bigger cloud instance (DigitalOcean droplet)
+# To load the Vector DB and add Google Drive documents to the knowledgebase. You could also use something else like
+# Pinecone instead of running Chroma locally! Uncomment lines 17 and 18 + replace line 33 with 32 if you want to use these tools.
+# available_functions = available_asana_functions | available_drive_functions | available_vector_db_functions
+available_functions = available_asana_functions
 tools = [tool for _, tool in available_functions.items()]
 
 for key, chatbot_class in model_mapping.items():

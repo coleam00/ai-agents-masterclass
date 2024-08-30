@@ -33,12 +33,11 @@ def main():
     # Create the Fast API route to invoke the runnable
     add_routes(
         app,
-        runnable,
-        path="/invoke",
+        runnable
     )
 
     # Start the API
-    uvicorn.run(app, host="localhost", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8000)
 
 if __name__ == "__main__":
     main()

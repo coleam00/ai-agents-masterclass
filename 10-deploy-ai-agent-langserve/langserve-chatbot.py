@@ -9,14 +9,12 @@ import os
 from langchain_core.messages import SystemMessage, AIMessage, HumanMessage, ToolMessage
 from langserve import RemoteRunnable
 
-from runnable import get_runnable
-
 load_dotenv()
 agent_endpoint_url = os.getenv('AGENT_ENDPOINT_URL', 'http://localhost:8000')
 
 @st.cache_resource
 def create_chatbot_instance():
-    return RemoteRunnable(f"{agent_endpoint_url}/invoke/")
+    return RemoteRunnable(agent_endpoint_url)
 
 chatbot = create_chatbot_instance()
 
