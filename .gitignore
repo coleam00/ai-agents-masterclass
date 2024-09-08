@@ -1,6 +1,7 @@
 __pycache__
 prep
 .env
+.env.local
 chroma_db
 test.py
 data
@@ -8,3 +9,4 @@ creds
 credentials
 credentials.json
 token.json
+node_modules
