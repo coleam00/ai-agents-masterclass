@@ -26,9 +26,10 @@ model_mapping = {
     "gpt": ChatOpenAI,
     "claude": ChatAnthropic,
     "groq": ChatGroq,
-    "llama": ChatHuggingFace   # ChatHuggingFace doesn't work for tool calling yet with HuggingFaceEndpoint but will in the future
+    "llama": ChatGroq
 }
 
+# Support for HuggingFace with local models coming soon! This function isn't used yet.
 @st.cache_resource
 def get_local_model():
     return HuggingFaceEndpoint(
@@ -54,7 +55,7 @@ tools = [tool for _, tool in available_functions.items()]
 
 for key, chatbot_class in model_mapping.items():
     if key in model.lower():
-        chatbot = chatbot_class(model=model) if key != "llama" else chatbot_class(llm=get_local_model())
+        chatbot = chatbot_class(model=model) if key != "huggingface" else chatbot_class(llm=get_local_model())
         break
 
 chatbot_with_tools = chatbot.bind_tools(tools)
