@@ -8,12 +8,12 @@
       "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
       "typeVersion": 1.1,
       "position": [
-        900,
+        1040,
         560
       ],
       "credentials": {
         "postgres": {
-          "id": "BAhZ6uu3zrQ3JmQm",
+          "id": "iN7fO2CgatVwq73z",
           "name": "Postgres account"
         }
       }
@@ -28,12 +28,12 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
       "typeVersion": 1,
       "position": [
-        760,
+        920,
         560
       ],
       "credentials": {
         "ollamaApi": {
-          "id": "tEBwcGKXQiQrbKjH",
+          "id": "eOwAotC7AUgJlvHM",
           "name": "Ollama account"
         }
       }
@@ -48,12 +48,12 @@
       "type": "@n8n/n8n-nodes-langchain.lmOllama",
       "typeVersion": 1,
       "position": [
-        1660,
+        1960,
         500
       ],
       "credentials": {
         "ollamaApi": {
-          "id": "tEBwcGKXQiQrbKjH",
+          "id": "eOwAotC7AUgJlvHM",
           "name": "Ollama account"
         }
       }
@@ -68,7 +68,7 @@
       "type": "@n8n/n8n-nodes-langchain.toolVectorStore",
       "typeVersion": 1,
       "position": [
-        1440,
+        1740,
         340
       ]
     },
@@ -81,12 +81,12 @@
       "type": "@n8n/n8n-nodes-langchain.embeddingsOllama",
       "typeVersion": 1,
       "position": [
-        1540,
+        1840,
         600
       ],
       "credentials": {
         "ollamaApi": {
-          "id": "tEBwcGKXQiQrbKjH",
+          "id": "eOwAotC7AUgJlvHM",
           "name": "Ollama account"
         }
       }
@@ -121,7 +121,7 @@
       ],
       "credentials": {
         "googleDriveOAuth2Api": {
-          "id": "hKn2avoGUt7FoAyY",
+          "id": "vzcL2pD7uQzqDpdK",
           "name": "Google Drive account"
         }
       }
@@ -156,7 +156,7 @@
       ],
       "credentials": {
         "googleDriveOAuth2Api": {
-          "id": "hKn2avoGUt7FoAyY",
+          "id": "vzcL2pD7uQzqDpdK",
           "name": "Google Drive account"
         }
       }
@@ -217,7 +217,7 @@
       "executeOnce": true,
       "credentials": {
         "googleDriveOAuth2Api": {
-          "id": "hKn2avoGUt7FoAyY",
+          "id": "vzcL2pD7uQzqDpdK",
           "name": "Google Drive account"
         }
       }
@@ -291,7 +291,7 @@
       ],
       "credentials": {
         "ollamaApi": {
-          "id": "tEBwcGKXQiQrbKjH",
+          "id": "eOwAotC7AUgJlvHM",
           "name": "Ollama account"
         }
       }
@@ -300,7 +300,7 @@
       "parameters": {
         "content": "## Local RAG AI Agent with Chat Interface",
         "height": 527.3027193303974,
-        "width": 670.6821106717343
+        "width": 969.0343804425795
       },
       "id": "a18773ae-1eb3-46b8-91cf-4184c66cf14f",
       "name": "Sticky Note2",
@@ -323,7 +323,7 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        1240,
+        1540,
         220
       ]
     },
@@ -341,19 +341,6 @@
       "position": [
         560,
         760
-      ]
-    },
-    {
-      "parameters": {
-        "options": {}
-      },
-      "id": "c9dfe906-178b-4375-8bda-f9290f35f222",
-      "name": "AI Agent",
-      "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 1.6,
-      "position": [
-        840,
-        340
       ]
     },
     {
@@ -385,12 +372,12 @@
       "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
       "typeVersion": 1,
       "position": [
-        1260,
+        1560,
         480
       ],
       "credentials": {
         "qdrantApi": {
-          "id": "4sxNvYWRIrm2rKl9",
+          "id": "VOnegFP8eijBkbNO",
           "name": "QdrantApi account"
         }
       }
@@ -399,7 +386,7 @@
       "parameters": {
         "code": {
           "execute": {
-            "code": "const { QdrantVectorStore } = require(\"@langchain/qdrant\");\nconst { OllamaEmbeddings } = require(\"@langchain/community/embeddings/ollama\");\n\nconst embeddings = new OllamaEmbeddings({\n  model: \"nomic-embed-text\",\n  baseUrl: \"http://host.docker.internal:11434\"\n});\n\nconst vectorStore = await QdrantVectorStore.fromExistingCollection(\n  embeddings,\n  {\n    url: \"http://host.docker.internal:6333\",\n    collectionName: \"documents\",\n  }\n);\n\nconst fileIdToDelete = this.getInputData()[0].json.file_id;\n\nconst filter = {\n        must: [\n            {\n                key: \"metadata.file_id\",\n                match: {\n                    value: fileIdToDelete,\n                },\n            },\n        ],\n    }\n\n// const results = await vectorStore.similaritySearch(\"this\", 10, filter);\n// const idsToDelete = results.map((doc) => doc.id);\n\n// NOT IMPLEMENTED!\n// await vectorStore.delete({ ids: idsToDelete });\n\nvectorStore.client.delete(\"documents\", {\n  filter\n});\n\nreturn [ {json: { file_id: fileIdToDelete } } ];\n"
+            "code": "const { QdrantVectorStore } = require(\"@langchain/qdrant\");\nconst { OllamaEmbeddings } = require(\"@langchain/community/embeddings/ollama\");\n\nconst embeddings = new OllamaEmbeddings({\n  model: \"nomic-embed-text\",\n  baseUrl: \"http://ollama:11434\"\n});\n\nconst vectorStore = await QdrantVectorStore.fromExistingCollection(\n  embeddings,\n  {\n    url: \"http://qdrant:6333\",\n    collectionName: \"documents\",\n  }\n);\n\nconst fileIdToDelete = this.getInputData()[0].json.file_id;\n\nconst filter = {\n        must: [\n            {\n                key: \"metadata.file_id\",\n                match: {\n                    value: fileIdToDelete,\n                },\n            },\n        ],\n    }\n\n// const results = await vectorStore.similaritySearch(\"this\", 10, filter);\n// const idsToDelete = results.map((doc) => doc.id);\n\n// NOT IMPLEMENTED!\n// await vectorStore.delete({ ids: idsToDelete });\n\nvectorStore.client.delete(\"documents\", {\n  filter\n});\n\nreturn [ {json: { file_id: fileIdToDelete } } ];\n"
           }
         },
         "inputs": {
@@ -449,10 +436,82 @@
       ],
       "credentials": {
         "qdrantApi": {
-          "id": "4sxNvYWRIrm2rKl9",
+          "id": "VOnegFP8eijBkbNO",
           "name": "QdrantApi account"
         }
       }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "e537544a-37d5-4b00-b5ff-bc71f041f4bb",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1340,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "invoke_n8n_agent",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "2b8cd01f-30a8-4aab-b0dd-56d2b658f059",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        620,
+        520
+      ],
+      "webhookId": "4a839da9-b8a2-45f8-bcaf-c484f9a5912d"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "c9dfe906-178b-4375-8bda-f9290f35f222",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.6,
+      "position": [
+        1000,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "75ebfdef-c8e2-4c3e-b716-1479d0cc2a73",
+              "name": "chatInput",
+              "value": "={{ $json?.chatInput || $json.body.chatInput }}",
+              "type": "string"
+            },
+            {
+              "id": "59b7a20f-0626-4861-93e2-015d430c266e",
+              "name": "sessionId",
+              "value": "={{ $json?.sessionId || $json.body.sessionId}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8f974a15-aa2f-4525-8278-ad58ad296076",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        820,
+        340
+      ]
     }
   ],
   "pinData": {},
@@ -485,17 +544,6 @@
           {
             "node": "Vector Store Tool",
             "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Vector Store Tool": {
-      "ai_tool": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_tool",
             "index": 0
           }
         ]
@@ -604,7 +652,7 @@
       "main": [
         [
           {
-            "node": "AI Agent",
+            "node": "Edit Fields",
             "type": "main",
             "index": 0
           }
@@ -632,16 +680,60 @@
           }
         ]
       ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vector Store Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
-  "active": false,
+  "active": true,
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "24e894e6-ec51-4ed0-a3cb-2de36c5d887a",
+  "versionId": "19f9691c-4682-4704-81f2-33fdec9d0be2",
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "eb51798708ee5e41b5338814f84985fff5b79dd7e443bf0d1f51648e6d6e003b"
+    "instanceId": "f722e3e1e81e942a38faa434ad0aee8699371bbff9f883b9d5c59a7c726605af"
   },
   "id": "vTN9y2dLXqTiDfPT",
   "tags": []
