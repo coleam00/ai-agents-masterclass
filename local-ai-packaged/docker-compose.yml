@@ -64,7 +64,7 @@ services:
     restart: unless-stopped
     container_name: openai-edge-tts
     environment:
-    - API_KEY=OPENAI_EDGE_TTS_API_KEY
+    - API_KEY=${OPENAI_EDGE_TTS_API_KEY}
     ports:
       - "5050:5050"
     extra_hosts:
