@@ -87,7 +87,7 @@ class Pipe:
                     "Authorization": f"Bearer {self.valves.n8n_bearer_token}",
                     "Content-Type": "application/json",
                 }
-                payload = {"sessionId": f"{__user__['id']} - {messages[0]['content'].split("Prompt: ")[-1][:100]}"}
+                payload = {"sessionId": f"{__user__['id']} - {messages[0]['content'].split('Prompt: ')[-1][:100]}"}
                 payload[self.valves.input_field] = question
                 response = requests.post(
                     self.valves.n8n_url, json=payload, headers=headers
