@@ -148,6 +148,18 @@ language model and Qdrant as your vector store.
 > combines robust components that work well together for proof-of-concept
 > projects. You can customize it to meet your specific needs
 
+## Local Multilanguage
+With openai-edge-tts you can use a nice tts on Open WebUI on multiple languages
+go to Open WebUI admin settings http://localhost:3000/admin/settings
+go to Audio, on TTS Settings choose OpenAI
+put this on the URL http://openai-edge-tts:5050/v1
+on API Key put "password" or whatever you put on the .env OPENAI_EDGE_TTS_API_KEY
+click save
+
+it should work now, to change languages and voices, go to settings, audio
+change Set Voice to any on this list eg:pt-BR-AntonioNeural (this one is from brazil)
+[List of voices and languages](https://gist.github.com/BettyJJ/17cbaa1de96235a7f5773b8690a20462)
+
 ## Upgrading
 
 ### For Nvidia GPU users
