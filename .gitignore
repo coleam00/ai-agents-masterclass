@@ -11,4 +11,5 @@ credentials.json
 token.json
 node_modules
 venv
+venv2
 *.db
