@@ -10,6 +10,7 @@ import json
 import os
 
 from langchain_groq import ChatGroq
+from langchain_ollama import ChatOllama
 from langchain_openai import ChatOpenAI
 from langchain_anthropic import ChatAnthropic
 from langchain_core.messages import ToolMessage, AIMessage
@@ -21,6 +22,14 @@ from tools.vector_db_tools import available_vector_db_functions
 
 load_dotenv()
 model = os.getenv('LLM_MODEL', 'gpt-4o')
+provider = os.getenv('LLM_PROVIDER', 'auto')
+
+provider_mapping = {
+    "openai": ChatOpenAI,
+    "anthropic": ChatAnthropic,
+    "ollama": ChatOllama,
+    "llama": ChatGroq
+}
 
 model_mapping = {
     "gpt": ChatOpenAI,
@@ -53,10 +62,16 @@ def get_local_model():
 available_functions = available_asana_functions | available_drive_functions | available_vector_db_functions
 tools = [tool for _, tool in available_functions.items()]
 
-for key, chatbot_class in model_mapping.items():
-    if key in model.lower():
-        chatbot = chatbot_class(model=model) if key != "huggingface" else chatbot_class(llm=get_local_model())
-        break
+if provider == "auto":
+    for key, chatbot_class in model_mapping.items():
+        if key in model.lower():
+            chatbot = chatbot_class(model=model) if key != "huggingface" else chatbot_class(llm=get_local_model())
+            break
+else:
+    for key, chatbot_class in provider_mapping.items():
+        if key in provider.lower():
+            chatbot = chatbot_class(model=model) if key != "huggingface" else chatbot_class(llm=get_local_model())
+            break
 
 chatbot_with_tools = chatbot.bind_tools(tools)
 
@@ -70,7 +85,7 @@ class GraphState(TypedDict):
     """
     messages: Annotated[list[AnyMessage], add_messages]
 
-async def call_model(state: GraphState, config: RunnableConfig) -> Dict[str, AnyMessage]:
+def call_model(state: GraphState, config: RunnableConfig) -> Dict[str, AnyMessage]:
     """
     Function that calls the model to generate a response.
 
@@ -88,7 +103,7 @@ async def call_model(state: GraphState, config: RunnableConfig) -> Dict[str, Any
     ))
 
     # Invoke the chatbot with the binded tools
-    response = await chatbot_with_tools.ainvoke(messages, config)
+    response = chatbot_with_tools.invoke(messages, config)
     # print("Response from model:", response)
 
     # We return an object because this will get added to the existing list
