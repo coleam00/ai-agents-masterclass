@@ -55,7 +55,7 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:
-      - pipelines:/app/pipelines
+      - ./open-webui-pipelines:/app/pipelines
     depends_on:
       - open-webui
       - postgres
