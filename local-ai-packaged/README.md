@@ -4,7 +4,7 @@
 quickly bootstraps a fully featured Local AI and Low Code development
 environment including Open WebUI for an interface to chat with your N8N agents. 
 
-This is Cole's version with a couple of improvements and the addition of Open WebUI! 
+This is Cole's version with a couple of improvements and the addition of Open WebUI and Flowise! 
 Also, the local RAG AI Agent workflow from the video will be automatically in your 
 n8n instance if you use this setup instead of the base one provided by n8n!
 
@@ -29,6 +29,9 @@ and run the latest local LLMs
 
 ✅ [**Open WebUI**](https://openwebui.com/) - ChatGPT-like interface to
 privately interact with your local models and N8N agents
+
+✅ [**Flowise**](https://flowiseai.com/) - No/low code AI agent
+builder that pairs very well with n8n
 
 ✅ [**Qdrant**](https://qdrant.tech/) - Open-source, high performance vector
 store with an comprehensive API

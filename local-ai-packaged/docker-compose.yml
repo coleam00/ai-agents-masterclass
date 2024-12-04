@@ -4,6 +4,7 @@ volumes:
   ollama_storage:
   qdrant_storage:
   open-webui:
+  flowise:
 
 networks:
   demo:
@@ -45,6 +46,21 @@ x-init-ollama: &init-ollama
     - "sleep 3; OLLAMA_HOST=ollama:11434 ollama pull llama3.1; OLLAMA_HOST=ollama:11434 ollama pull nomic-embed-text"
 
 services:
+  flowise:
+    image: flowiseai/flowise
+    networks: ['demo']
+    restart: unless-stopped
+    container_name: flowise
+    environment:
+        - PORT=3001
+    ports:
+        - 3001:3001
+    extra_hosts:
+      - "host.docker.internal:host-gateway"        
+    volumes:
+        - ~/.flowise:/root/.flowise
+    entrypoint: /bin/sh -c "sleep 3; flowise start"
+
   open-webui:
     image: ghcr.io/open-webui/open-webui:main
     networks: ['demo']
