@@ -52,7 +52,7 @@ The Streamlit version is created to provide a UI with text streaming from the LL
 1. Set your OpenAI API key in the `.env` file.
 2. Start the Streamlit app:
 ```bash
-streamlit run web_search_agent_streamlit.py
+streamlit run streamlit_ui.py
 ```
 3. The Streamlit app will open in your browser.
 
