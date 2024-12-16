@@ -8,6 +8,7 @@ volumes:
 
 networks:
   demo:
+    name: demo
 
 x-n8n: &service-n8n
   image: n8nio/n8n:latest
