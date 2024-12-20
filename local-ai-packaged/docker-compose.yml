@@ -11,7 +11,7 @@ networks:
 
 x-n8n: &service-n8n
   image: n8nio/n8n:latest
-  networks: ['demo']
+  networks: ["demo"]
   environment:
     - DB_TYPE=postgresdb
     - DB_POSTGRESDB_HOST=postgres
@@ -27,7 +27,7 @@ x-n8n: &service-n8n
 x-ollama: &service-ollama
   image: ollama/ollama:latest
   container_name: ollama
-  networks: ['demo']
+  networks: ["demo"]
   restart: unless-stopped
   ports:
     - 11434:11434
@@ -36,7 +36,7 @@ x-ollama: &service-ollama
 
 x-init-ollama: &init-ollama
   image: ollama/ollama:latest
-  networks: ['demo']
+  networks: ["demo"]
   container_name: ollama-pull-llama
   volumes:
     - ollama_storage:/root/.ollama
@@ -48,22 +48,22 @@ x-init-ollama: &init-ollama
 services:
   flowise:
     image: flowiseai/flowise
-    networks: ['demo']
+    networks: ["demo"]
     restart: unless-stopped
     container_name: flowise
     environment:
-        - PORT=3001
+      - PORT=3001
     ports:
-        - 3001:3001
+      - 3001:3001
     extra_hosts:
-      - "host.docker.internal:host-gateway"        
+      - "host.docker.internal:host-gateway"
     volumes:
-        - ~/.flowise:/root/.flowise
+      - ~/.flowise:/root/.flowise
     entrypoint: /bin/sh -c "sleep 3; flowise start"
 
   open-webui:
     image: ghcr.io/open-webui/open-webui:main
-    networks: ['demo']
+    networks: ["demo"]
     restart: unless-stopped
     container_name: open-webui
     ports:
@@ -75,7 +75,7 @@ services:
 
   postgres:
     image: postgres:16-alpine
-    networks: ['demo']
+    networks: ["demo"]
     restart: unless-stopped
     ports:
       - 5432:5432
@@ -86,7 +86,11 @@ services:
     volumes:
       - postgres_storage:/var/lib/postgresql/data
     healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -h localhost -U ${POSTGRES_USER} -d ${POSTGRES_DB}']
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -h localhost -U ${POSTGRES_USER} -d ${POSTGRES_DB}",
+        ]
       interval: 5s
       timeout: 5s
       retries: 10
@@ -123,7 +127,7 @@ services:
   qdrant:
     image: qdrant/qdrant
     container_name: qdrant
-    networks: ['demo']
+    networks: ["demo"]
     restart: unless-stopped
     ports:
       - 6333:6333
@@ -145,6 +149,26 @@ services:
               count: 1
               capabilities: [gpu]
 
+  # AMD GPU Ollama Service
+  ollama-gpu-amd:
+    profiles: ["gpu-amd"]
+    <<: *service-ollama
+    image: ollama/ollama:rocm
+    devices:
+      - /dev/dri:/dev/dri
+      - /dev/kfd:/dev/kfd
+    security_opt:
+      - seccomp:unconfined
+    group_add:
+      - video
+    privileged: true
+    ipc: host
+    shm_size: 64G #Shared Memory adjust to your setup
+    cap_add:
+      - SYS_PTRACE
+    stdin_open: true
+    tty: true
+
   ollama-pull-llama-cpu:
     profiles: ["cpu"]
     <<: *init-ollama
@@ -156,3 +180,11 @@ services:
     <<: *init-ollama
     depends_on:
       - ollama-gpu
+
+  # AMD GPU Ollama Pull Service
+  ollama-pull-llama-amd:
+    profiles: ["gpu-amd"]
+    <<: *init-ollama
+    image: ollama/ollama:rocm
+    depends_on:
+      - ollama-gpu-amd
