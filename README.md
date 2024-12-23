@@ -70,12 +70,13 @@ After setting up the .env file, run the below commands to create a Python virtua
 ### Quickstart
 
 ```bash
+# Create a virtual environment
 python -m venv ai-agents-masterclass
 
 # On Windows:
 .\ai-agents-masterclass\Scripts\activate
 
-# On MacOS/Linux: 
+# On macOS/Linux: 
 source ai-agents-masterclass/bin/activate
 
 # Navigate to the folder for the lesson
