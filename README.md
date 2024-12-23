@@ -111,7 +111,7 @@ Create a virtual environment and install _all_ the dependencies with:
 poetry install
 ```
 
-> !NOTE:
+> [!NOTE]
 > To use virtual environments in the working directory, 
 > you can run `poetry config virtualenvs.in-project true` to enable this feature.
 
