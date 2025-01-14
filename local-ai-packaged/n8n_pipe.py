@@ -13,6 +13,15 @@ import os
 import time
 import requests
 
+def extract_event_info(event_emitter) -> tuple[Optional[str], Optional[str]]:
+    if not event_emitter or not event_emitter.__closure__:
+        return None, None
+    for cell in event_emitter.__closure__:
+        if isinstance(request_info := cell.cell_contents, dict):
+            chat_id = request_info.get("chat_id")
+            message_id = request_info.get("message_id")
+            return chat_id, message_id
+    return None, None
 
 class Pipe:
     class Valves(BaseModel):
@@ -75,7 +84,7 @@ class Pipe:
         await self.emit_status(
             __event_emitter__, "info", "/Calling N8N Workflow...", False
         )
-
+        chat_id, _ = extract_event_info(__event_emitter__)
         messages = body.get("messages", [])
 
         # Verify a message is available
@@ -87,7 +96,7 @@ class Pipe:
                     "Authorization": f"Bearer {self.valves.n8n_bearer_token}",
                     "Content-Type": "application/json",
                 }
-                payload = {"sessionId": f"{__user__['id']} - {messages[0]['content'].split('Prompt: ')[-1][:100]}"}
+                payload = {"sessionId": f"{chat_id}"}
                 payload[self.valves.input_field] = question
                 response = requests.post(
                     self.valves.n8n_url, json=payload, headers=headers
