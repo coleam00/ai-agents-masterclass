@@ -1,0 +1,260 @@
+[tool.poetry]
+name = "ai-agents-masterclass"
+version = "0.1.0"
+description = ""
+authors = [
+    "Cole Medin <47287758+coleam00@users.noreply.github.com>",
+    "pythoninthegrass <4097471+pythoninthegrass@users.noreply.github.com>"
+]
+readme = "README.md"
+license = "MIT"
+package-mode = true
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.13"
+aiohappyeyeballs = "2.4.3"
+aiohttp = "3.10.8"
+aiosignal = "1.3.1"
+aiosqlite = "0.20.0"
+altair = "5.5.0"
+annotated-types = "0.7.0"
+anyio = "4.7.0"
+asana = "5.0.7"
+asttokens = "2.4.1"
+async-timeout = "4.0.3"
+asyncio = "3.4.3"
+attrs = "24.2.0"
+blinker = "1.9.0"
+cachetools = "5.5.0"
+certifi = "2024.8.30"
+cfgv = "3.4.0"
+charset-normalizer = "3.4.0"
+click = "8.1.7"
+colorama = "0.4.6"
+datasets = "3.0.0"
+deprecated = "1.2.15"
+deprecation = "2.1.0"
+devtools = "0.12.2"
+distlib = "0.3.9"
+distro = "1.9.0"
+docstring-parser = "0.16"
+eval-type-backport = "0.2.0"
+exceptiongroup = "1.2.2"
+executing = "2.1.0"
+fastapi = "0.112.2"
+filelock = "3.16.1"
+frozenlist = "1.4.1"
+gitdb = "4.0.11"
+gitpython = "3.1.43"
+google-api-python-client = "2.142.0"
+google-auth = "2.36.0"
+google-auth-oauthlib = "1.2.1"
+googleapis-common-protos = "1.66.0"
+gotrue = "2.9.1"
+griffe = "1.5.1"
+groq = "0.13.0"
+gunicorn = "23.0.0"
+h11 = "0.14.0"
+h2 = "4.1.0"
+hpack = "4.0.0"
+httpcore = "1.0.7"
+httpx = "0.27.2"
+hyperframe = "6.0.1"
+identify = "2.6.1"
+idna = "3.10"
+importlib-metadata = "8.5.0"
+iniconfig = "2.0.0"
+instructor = "1.5.2"
+jinja2 = "3.1.4"
+jiter = "0.5.0"
+jsonschema = "4.23.0"
+jsonschema-specifications = "2024.10.1"
+korvus = "1.1.2"
+langchain = "0.2.6"
+langchain-anthropic = "0.1.22"
+langchain-chroma = "0.1.2"
+langchain-community = "0.2.6"
+langchain-core = "0.2.28"
+langchain-groq = "0.1.5"
+langchain-huggingface = "0.0.3"
+langchain-openai = "0.1.20"
+langgraph = "0.1.19"
+langserve = "0.2.2"
+logfire = "2.6.2"
+logfire-api = "2.6.2"
+markdown-it-py = "3.0.0"
+markupsafe = "3.0.2"
+mdurl = "0.1.2"
+multidict = "6.1.0"
+narwhals = "1.15.2"
+nodeenv = "1.9.1"
+oauthlib = "3.2.2"
+openai = "1.57.0"
+opentelemetry-api = "1.28.2"
+opentelemetry-exporter-otlp-proto-common = "1.28.2"
+opentelemetry-exporter-otlp-proto-http = "1.28.2"
+opentelemetry-instrumentation = "0.49b2"
+opentelemetry-proto = "1.28.2"
+opentelemetry-sdk = "1.28.2"
+opentelemetry-semantic-conventions = "0.49b2"
+packaging = "24.2"
+pandas = "2.2.3"
+pdfminer-six = "20240706"
+pillow = "10.4.0"
+platformdirs = "4.3.6"
+pluggy = "1.5.0"
+postgrest = "0.17.0"
+pre-commit = "4.0.1"
+propcache = "0.2.0"
+protobuf = "5.29.1"
+pyarrow = "18.1.0"
+pyasn1 = "0.6.1"
+pyasn1-modules = "0.4.1"
+pydantic = "2.10.3"
+pydantic-ai = "0.0.10"
+pydantic-ai-slim = "0.0.10"
+pydantic-core = "2.27.1"
+pydeck = "0.9.1"
+pygments = "2.18.0"
+pytest = "8.3.3"
+python-dateutil = "2.9.0.post0"
+python-decouple = "^3.8"
+python-dotenv = "1.0.1"
+pytz = "2024.2"
+pyyaml = "6.0.2"
+realtime = "2.0.5"
+referencing = "0.35.1"
+requests = "2.32.3"
+requests-oauthlib = "2.0.0"
+rich = "13.9.4"
+rpds-py = "0.22.3"
+rsa = "4.9"
+sentence-transformers = "3.0.1"
+shellingham = "1.5.4"
+six = "1.17.0"
+smmap = "5.0.1"
+sniffio = "1.3.1"
+sse-starlette = "2.1.3"
+storage3 = "0.8.0"
+streamlit = "1.40.2"
+strenum = "0.4.15"
+supabase = "2.8.1"
+supafunc = "0.6.0"
+swarm = {git = "https://github.com/openai/swarm.git"}
+tenacity = "8.5.0"
+toml = "0.10.2"
+tornado = "6.4.2"
+tqdm = "4.67.1"
+typer = "0.12.5"
+typing-extensions = "4.12.2"
+tzdata = "2024.2"
+unstructured = {extras = ["all-docs"], version = "^0.16.11"}
+urllib3 = "2.2.3"
+uvicorn = "0.30.6"
+virtualenv = "20.26.6"
+watchdog = "6.0.0"
+websockets = "13.1"
+wrapt = "1.17.0"
+yarl = "1.15.2"
+zipp = "3.21.0"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.8.4"
+uv = "^0.5.11"
+
+[tool.uv.pip]
+index-url = "https://pypi.org/simple"
+
+[tool.ruff]
+# Fix without reporting on leftover violations
+fix-only = true
+
+# Enumerate all fixed violations
+show-fixes = true
+
+# Indent width (default: 4)
+indent-width = 4
+
+# Black (default: 88)
+line-length = 130
+
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".bzr",
+    ".direnv",
+    "dist",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    "__pycache__",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+]
+
+# Assume Python 3.11.
+target-version = "py311"
+
+[tool.ruff.format]
+# Use spaces instead of tabs
+indent-style = "space"
+
+# Use `\n` line endings for all files
+line-ending = "lf"
+
+# Set quote style for strings
+quote-style = "preserve"
+
+[tool.ruff.lint]
+# Enable pycodestyle (`E`), Pyflakes (`F`), and isort (`I`) by default.
+select = [
+    # Pyflakes
+    "F",
+    # Pycodestyle
+    "E",
+    "W",
+    # isort
+    "I001",
+    "I002"
+]
+# Skip unused variable rules
+ignore = []
+extend-ignore = ["D203", "E203", "E251", "E266", "E401", "E402", "E501", "F401", "F403"]
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+# Allow autofix for all enabled rules (when `--fix`) is provided.
+fixable = ["A", "B", "C", "D", "E", "F", "G", "I", "N", "Q", "S", "T", "W", "ANN", "ARG", "BLE", "COM", "DJ", "DTZ", "EM", "ERA", "EXE", "FBT", "ICN", "INP", "ISC", "NPY", "PD", "PGH", "PIE", "PL", "PT", "PTH", "PYI", "RET", "RSE", "RUF", "SIM", "SLF", "TCH", "TID", "TRY", "UP", "YTT"]
+
+# unfixable = []
+
+[tool.ruff.lint.isort]
+from-first = false
+lines-after-imports = 2
+lines-between-types = 0
+no-sections = true
+
+[tool.ruff.lint.flake8-quotes]
+docstring-quotes = "double"
+
+[tool.ruff.lint.mccabe]
+# Unlike Flake8, default to a complexity level of 10.
+max-complexity = 10
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

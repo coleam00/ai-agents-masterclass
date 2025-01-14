@@ -67,17 +67,23 @@ You will need to use the environment variables defined in the .env.example file 
 
 After setting up the .env file, run the below commands to create a Python virtual environment and install the necessary Python packages to run the code from the masterclass. Creating a virtual environment is optional but recommended! Creating a virtual environment for the entire masterclass is a one time thing. Make sure to run the pip install for each video though!
 
+### Quickstart
+
 ```bash
+# Create a virtual environment
 python -m venv ai-agents-masterclass
 
 # On Windows:
 .\ai-agents-masterclass\Scripts\activate
 
-# On MacOS/Linux: 
+# On macOS/Linux: 
 source ai-agents-masterclass/bin/activate
 
+# Navigate to the folder for the lesson
 cd 1-first-agent (or whichever folder)
-pip install -r requirements.txt
+
+# Install the dependencies
+python -m pip install -r requirements.txt
 ```
 
 Then, you can execute the code in the folder with:
@@ -85,3 +91,61 @@ Then, you can execute the code in the folder with:
 ```bash
 python [script name].py
 ```
+
+Once you're done, you can deactivate the virtual environment with:
+
+```bash
+deactivate
+```
+
+### Poetry
+
+Alternatively, to use [Poetry](https://python-poetry.org/docs/), install it via:
+
+```bash
+python -m pip install poetry
+```
+
+Create a virtual environment and install _all_ the dependencies with:
+
+```bash
+poetry install
+```
+
+> [!NOTE]
+> To use virtual environments in the working directory, 
+> you can run `poetry config virtualenvs.in-project true` to enable this feature.
+
+Once that's completed, you can run the code with:
+
+```bash
+poetry run python [script name].py
+```
+
+### uv
+
+Another option for package management is [uv](https://docs.astral.sh/uv/). Install via:
+
+```bash
+python -m pip install uv
+```
+
+Create a virtual environment and install the dependencies with:
+
+```bash
+uv venv
+source .venv/bin/activate
+uv pip install -r pyproject.toml
+```
+
+Then, you can run the code:
+
+```bash
+source .venv/bin/activate
+python [script name].py
+```
+
+## Further Reading
+
+* [asdf](https://asdf-vm.com/)
+    * Manages runtimes and tools for multiple languages via `.tool-versions` files.
